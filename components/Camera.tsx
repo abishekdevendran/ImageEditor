@@ -42,7 +42,7 @@ const CameraComponent = ({
 			const photo = await cameraRef.current.takePictureAsync();
 			setImage(photo.uri);
 			//save image locally
-			MediaLibrary.saveToLibraryAsync(photo.uri);
+			mediaPermission?.granted && MediaLibrary.saveToLibraryAsync(photo.uri);
 			//generate toast to say so
 			mediaPermission?.granted
 				? Toast.show('Image saved to gallery', {
